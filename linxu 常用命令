@@ -2,3 +2,6 @@
 遇到问题:command not found --->yum install lrzsz -y
 2.创建文件命令：mkdir 文件名
 修改文件名名称 mv 原文件名 新文件名
+3.vi 模式下显示行号 esc --> :set nu;
+vi 模式下：光标移到稳定尾行 G; 移到文档手行 gg;
+
