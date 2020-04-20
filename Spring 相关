@@ -1,0 +1,10 @@
+1.Spring IOC容器的启动：
+  a-->在web项目中通过servlet机制启动容器
+  <!--Spring 监听器-->
+  <listener>
+		  <listener-class>org.springframework.web.context.ContextLoaderListener
+		  </listener-class>
+	</listener>
+2.通过XmlBeanDefinitionReader 进行Spring IOC容器进行启动
+  
+3.使用ClassPathXmlApplicationContext进行 sprig ioc容器的启动
