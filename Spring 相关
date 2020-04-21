@@ -6,5 +6,35 @@
 		  </listener-class>
 	</listener>
 2.通过XmlBeanDefinitionReader 进行Spring IOC容器进行启动
-  
 3.使用ClassPathXmlApplicationContext进行 sprig ioc容器的启动
+
+
+Spring 整合mybatis：
+
+    <!--mybatis 配置类-->
+    <bean id="configuration" class="org.apache.ibatis.session.Configuration">
+        <!--设置驼峰转换-->
+        <property name="mapUnderscoreToCamelCase" value="true"/>
+        <!--开启二级缓存-->
+        <property name="cacheEnabled" value="true"/>
+    </bean>
+    
+    <!--mybatis 配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--sql映射文件路径-->
+        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
+        <!--别名-->
+        <property name="typeAliasesPackage" value="com.jt.entity"/>
+        <!--配置类-->
+        <property name="configuration" ref="configuration"/>
+    </bean>
+   
+     <!--自动扫描对象关系映射-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.jt.dal.**"/>
+    </bean>
+mybatis 默认开启一级缓存,开启二级缓存需要在xml 中添加,一级缓存是跟着sqlSessionFaction 二级缓存是跟着namespace
+<cache eviction="FIFO"  <!--回收策略为先进先出--> flushInterval="60000" <!--自动刷新时间60s--> size="512" <!--最多缓存512个引用对象-->
+readOnly="true"/> <!--只读-->
