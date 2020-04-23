@@ -38,3 +38,6 @@ Spring 整合mybatis：
 mybatis 默认开启一级缓存,开启二级缓存需要在xml 中添加,一级缓存是跟着sqlSessionFaction 二级缓存是跟着namespace
 <cache eviction="FIFO"  <!--回收策略为先进先出--> flushInterval="60000" <!--自动刷新时间60s--> size="512" <!--最多缓存512个引用对象-->
 readOnly="true"/> <!--只读-->
+
+
+PageHelper遇到的坑：查询发现最大超过最大页数，仍然能返回数据，PageHelper 里面又一个参数reasonable配置分页是否合理化 
