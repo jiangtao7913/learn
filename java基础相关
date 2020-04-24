@@ -7,3 +7,14 @@
         return IntegerCache.cache[i + (-IntegerCache.low)];
     return new Integer(i);
   }
+2.Long 与Integer 一样（-128~127）
+3.Byte（-128~127）,但是byte的取值范围是 -128~127,基于这个原因所以byte是对全部的值进行缓存
+  public static Byte valueOf(byte b) {
+        final int offset = 128;
+        return ByteCache.cache[(int)b + offset];
+    }
+4.位运算
+  <<左移：10<<2 ==> 10*2*2, M<<N 表示 M乘以2的N次方
+  >>右移：10>>2 ==>10/2/2,-10>>2 ==> -10/2/2 + 1,M>>N当 M为正数时，除以2的N次方取商，当M为负数时,除以2的N次方加1
+  >>无符号右移，高位补0
+  ^按 位异或：1^1 = 0 按位异或可以比较两个数字是否相等，它利用 1^1=0，0^0=0的原理
