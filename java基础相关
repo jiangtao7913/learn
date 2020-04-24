@@ -1,4 +1,9 @@
 1.Integer 等包装类的自动装箱自动拆箱机制
   Integer a= 100 ===> JVM编译成 Integer.valueOf(100);
-范围 -128~127 之间，可以通过设置虚拟机参数来设置，该机制的作用节省内存提高性能，对于调用构造器创建的Integer 对象则无效。
-通过设置JVM参数：-XX:AutoBoxCacheMax=xx 来设置最大值
+  范围 -128~127 之间，可以通过设置虚拟机参数来设置，该机制的作用节省内存提高性能，对于调用构造器创建的Integer 对象则无效。
+  通过设置JVM参数：-XX:AutoBoxCacheMax=xx 来设置最大值
+  public static Integer valueOf(int i) {
+    if (i >= IntegerCache.low && i <= IntegerCache.high)
+        return IntegerCache.cache[i + (-IntegerCache.low)];
+    return new Integer(i);
+  }
