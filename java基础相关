@@ -18,3 +18,22 @@
   >>右移：10>>2 ==>10/2/2,-10>>2 ==> -10/2/2 + 1,M>>N当 M为正数时，除以2的N次方取商，当M为负数时,除以2的N次方加1
   >>无符号右移，高位补0
   ^按 位异或：1^1 = 0 按位异或可以比较两个数字是否相等，它利用 1^1=0，0^0=0的原理
+
+
+5.restTemplate 请求文件接口MultipartFile 不能作为参数，需要将类型转换成输入流
+            final String fileName = file.getOriginalFilename();
+            final long size = file.getSize();
+            InputStreamResource fileResource = new InputStreamResource(file.getInputStream()) {
+                @Override
+                public long contentLength() {
+                    return size;
+                }
+
+                @Override
+                public String getFilename() {
+                    return fileName;
+                }
+            };
+            
+            
+            
